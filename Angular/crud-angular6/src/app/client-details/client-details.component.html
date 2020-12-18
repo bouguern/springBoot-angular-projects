@@ -1,0 +1,23 @@
+<div *ngIf="client" >
+  <div class="row">
+    <label class="col-4">Name : </label>
+    <span class="col-8">{{ client.name }}</span> 
+  </div>
+  <div class="row">
+    <label class="col-4">Age : </label> 
+    <span class="col-8">{{ client.age }}</span>
+  </div>
+  <div class="row">
+    <label class="col-4">Availability: </label> 
+    <span class="col-8">{{ client.available }}</span>
+  </div>
+
+  <div class="row">
+    <button type="button" class="btn btn-primary mr-2 btn-sm" *ngIf="client.available" (click)="updateAvailable(false)">Inactive</button>
+    <button type="button" class="btn btn-primary mr-2 btn-sm" *ngIf="!client.available" (click)="updateAvailable(true)">Active</button>
+    <button type="button" class="btn btn-primary btn-sm" (click)="deleteClient()">Delete</button> 
+  </div>
+
+  <hr/>
+
+</div>

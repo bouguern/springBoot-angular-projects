@@ -1,0 +1,9 @@
+<div class="mt-5">
+  <h1 class="text-center">Clients</h1>
+<div *ngFor="let client of clients | async" style="width: 300px;">
+  <app-client-details [client]='client'></app-client-details>
+</div>
+<div>
+  <button class="btn btn-danger" type="button" (click)='deleteClients()'>Delete All</button>
+</div>
+</div>
