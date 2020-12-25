@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import * as CanvasJS from '../assets/canvasjs.min';
-import * as $ from 'jquery';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +14,7 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     this.columnChart();
     this.performanceChart();
+    this.roundChart();
   }
 
   columnChart() {
@@ -70,7 +70,32 @@ export class AppComponent implements OnInit{
 	  chart.render();
   }
 
-  
+  roundChart() {
+    let chart = new CanvasJS.Chart("chartContainer3", {
+      theme: "light2",
+      animationEnabled: true,
+      exportEnabled: true,
+      title: {
+        text: "Monthly Expense"
+      },
+      data: [{
+        type: "pie",
+        showInLegend: true,
+        toolTipContent: "<b>{name}</b>: ${y} (#percent%)",
+        indexLabel: "{name} - #percent%",
+        dataPoints: [
+          { y: 150, name: "Others"},
+          { y: 260, name: "Education"},
+          { y: 170, name: "Housing"},
+          { y: 100, name: "Traveling"},
+          { y: 200, name: "Shopping"},
+          { y: 130, name: "Insurance"},
+          { y: 300, name: "Food"}
+        ]
+      }]
+    });
+    chart.render();
+  }
 
 
 }
