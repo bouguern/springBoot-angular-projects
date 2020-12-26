@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { DayPilot, DayPilotSchedulerComponent } from "daypilot-pro-angular";
-import { DataServiceService } from '../data-service.service';
+import { DataServiceService, EventCreateParams, EventDeleteParams, EventMoveParams } from '../data-service.service';
 
 @Component({
   selector: 'app-scheduler',
@@ -30,13 +30,53 @@ export class SchedulerComponent implements AfterViewInit{
     ],
     days: 31,
     startDate: "2021-10-01",
-    scale: "Day"
+    scale: "Day",
+    eventDeleteHandling: "Update",
+    onTimeRangeSelected: args => {
+      DayPilot.Modal.prompt("New event name:", "Event").then(modal => {
+        this.scheduler.control.clearSelection();
+        if (!modal.result) {
+          return;
+        }
+
+        let params: EventCreateParams = {
+          start: args.start.toString(),
+          end: args.end.toString(),
+          text: modal.result,
+          resource: args.resource
+        };
+        this.dataService.createEvent(params).subscribe(result => {
+          this.events.push(result);
+          this.scheduler.control.message("Event created");
+        });
+      });
+    },
+    onEventMove: args => {
+        let params: EventMoveParams = {
+        id: args.e.id(),
+        start: args.newStart.toString(),
+        end: args.newEnd.toString(),
+        resource: args.newResource
+      };
+      this.dataService.moveEvent(params).subscribe(result => {
+        this.scheduler.control.message("Event moved");
+      });
+    },
+    onEventDelete: args => {
+      let params: EventDeleteParams = {
+        id: args.e.id(),
+      };
+      this.dataService.deleteEvent(params).subscribe(result => {
+        this.scheduler.control.message("Event deleted");
+      });
+    },
   };
 
   constructor(private dataService: DataServiceService) {}
 
   ngAfterViewInit(): void {
     this.getResources();
+    this.getEvents();
   }
 
   getResources() {
@@ -46,6 +86,12 @@ export class SchedulerComponent implements AfterViewInit{
         console.log("wa mohmaz : ", result);
       }
     );
+  }
+
+  getEvents() {
+    var from = this.scheduler.control.visibleStart();
+    var to = this.scheduler.control.visibleEnd();
+    this.dataService.getEvents(from, to).subscribe(result => this.events = result);
   }
 
   
