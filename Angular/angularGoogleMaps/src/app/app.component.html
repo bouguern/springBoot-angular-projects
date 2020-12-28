@@ -1,0 +1,26 @@
+<div class="container">
+  <h1 class="h1 text-secondary text-center">Angular with Google Maps</h1>
+  <div class="row">
+    <button class="btn btn-primary mr-auto" (click)="addMarker()">Add marker</button>
+    <button class="btn btn-primary" (click)="logCenter()">Log Center</button>
+  </div>
+  <div class="row">
+    <span class="mr-auto">My Latitude is : {{ center.lat }}</span>
+    <span>My Longitude is : {{ center.lng }}</span>
+  </div>
+    <google-map 
+        height="500px" width="100%"
+        [zoom]="zoom" [center]="center"
+        [options]="options"
+        (mapClick)="click($event)">
+
+      <map-marker
+          *ngFor="let marker of markers"
+          [position]="marker.position"
+          [label]="marker.label"
+          [title]="marker.title"
+          [options]="marker.options"
+      >
+      </map-marker>
+  </google-map>
+</div>
