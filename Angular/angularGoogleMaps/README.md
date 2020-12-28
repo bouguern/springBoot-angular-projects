@@ -27,7 +27,7 @@
 </p>
 
 <h3>The result of this project is : </h3>
-<img src="assets/result.jpg">
+<img src="src/assets/result.jpg">
 
 # AngularGoogleMaps
 
