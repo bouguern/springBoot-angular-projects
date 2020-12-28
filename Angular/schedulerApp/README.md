@@ -1,3 +1,23 @@
+<h1>Angular Scheduler UI with Spring Boot Backend (Java)</h1>
+
+<p>
+    Angular project that shows how to create Scheduler UI using DayPilot Pro for Angular. Includes a backend REST/JSON application implemented using Spring Boot (Java).
+</p>
+
+<img src="src/assets/scheduer.png"/>
+
+<h3>Technologies used :</h3>
+<ul>
+    <li>Angular 9</li>
+    <li>DayPilot ( npm install https://npm.daypilot.org/daypilot-pro-angular/trial/2020.4.4807.tar.gz --save )</li>
+    <li>Java 8</li>
+    <li>Spring Boot 2.4.1</li>
+    <li>Maven 4.0.0 </li>
+    <li>Mysql</li>
+</ul>
+
+<h2>The Backend for this project : https://github.com/bouguern/springBoot-angular-projects/tree/master/Spring/schedulerSpringBoot </h2>
+
 # SchedulerApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.13.
