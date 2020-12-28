@@ -26,6 +26,9 @@
     to create a new key.
 </p>
 
+<h3>The result of this project is : </h3>
+<img src="assets/result.jpg">
+
 # AngularGoogleMaps
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.13.
